@@ -19,10 +19,28 @@
         <mat-card-content>
             <img [src]="silhouetteImage" alt="Pokemon Silhouette" class="pokemon-image">
             <div class="options">
-                <button mat-raised-button color="accent" *ngFor="let option of options">
+                <button mat-raised-button color="accent" *ngFor="let option of options" (click)="makeGuess(option)">
                     {{ option }}
                 </button>
             </div>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Correct Guess -->
+    <mat-card class="result-card correct" *ngIf="guessResult === 'correct'">
+        <mat-card-title> Your guess is correct! It's {{ correctName }}!</mat-card-title>
+        <mat-card-content>
+            <img [src]="fullImage" alt="Pokemon Image" class="pokemon-image">
+            <button mat-raised-button color="primary" (click)="fetchRandomPokemon()">Play Again</button>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- Incorrect Guess -->
+    <mat-card class="result-card incorrect" *ngIf="guessResult === 'incorrect'">
+        <mat-card-title>Your guess is Incorrect! The correct answer is {{ correctName }}.</mat-card-title>
+        <mat-card-content>
+            <img [src]="fullImage" alt="Pokemon Image" class="pokemon-image">
+            <button mat-raised-button color="primary" (click)="fetchRandomPokemon()">Try Again</button>
         </mat-card-content>
     </mat-card>
 
