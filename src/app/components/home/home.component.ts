@@ -12,6 +12,11 @@ export class HomeComponent {
 
   startGame() {
     this.router.navigate(['/guess']);
+    this.resetScore();
+  }
+
+  resetScore(): void {
+    localStorage.removeItem('playerScore');
   }
 
 }

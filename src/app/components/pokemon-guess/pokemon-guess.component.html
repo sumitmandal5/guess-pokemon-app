@@ -1,5 +1,7 @@
 <mat-toolbar color="primary">
     <span>Guess the Pokemon!</span>
+    <span class="score">Score: {{ score }}</span>
+    <button mat-button color="warn" (click)="resetScore()">Reset Score</button>
 </mat-toolbar>
 
 <div class="guess-container">
@@ -19,7 +21,7 @@
         <mat-card-content>
             <img [src]="silhouetteImage" alt="Pokemon Silhouette" class="pokemon-image">
             <div class="options">
-                <button mat-raised-button color="accent" *ngFor="let option of options" (click)="makeGuess(option)">
+                <button mat-raised-button color="accent" *ngFor="let option of options" (click)="makeGuess(option)" [disabled]="buttonsDisabled">
                     {{ option }}
                 </button>
             </div>

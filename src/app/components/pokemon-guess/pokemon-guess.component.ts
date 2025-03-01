@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { PokemonService } from '../../services/pokemon.service';
   templateUrl: './pokemon-guess.component.html',
   styleUrls: ['./pokemon-guess.component.scss']
 })
-export class PokemonGuessComponent {
+export class PokemonGuessComponent implements OnInit {
   pokemonId!: number;
   silhouetteImage!: string;
   options: string[] = [];
@@ -15,10 +15,13 @@ export class PokemonGuessComponent {
   guessResult: 'correct' | 'incorrect' | null = null;
   fullImage!: string;
   correctName!: string;
+  score = 0;
+  buttonsDisabled = false;
 
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
+    this.loadScore();
     this.fetchRandomPokemon();
   }
 
@@ -26,6 +29,7 @@ export class PokemonGuessComponent {
     this.isLoading = true;
     this.errorMessage = null;
     this.guessResult = null;
+    this.buttonsDisabled = false;
 
     this.pokemonService.getRandomPokemon().subscribe({
       next: (data) => {
@@ -44,12 +48,17 @@ export class PokemonGuessComponent {
 
   makeGuess(guessedName: string): void {
     this.isLoading = true;
+    this.buttonsDisabled = true;
     this.pokemonService.guessPokemon(this.pokemonId, guessedName).subscribe({
       next: (response) => {
         this.guessResult = response.guessCorrect ? 'correct' : 'incorrect';
         this.fullImage = response.fullImage;
         this.correctName = response.correctName;
         this.isLoading = false;
+
+        if (response.guessCorrect) {
+          this.updateScore();
+        }
       },
       error: (err) => {
         console.error('Error submitting guess:', err);
@@ -57,6 +66,23 @@ export class PokemonGuessComponent {
         this.isLoading = false;
       }
     });
+  }
+
+  updateScore(): void {
+    this.score += 1;
+    localStorage.setItem('playerScore', this.score.toString());
+  }
+
+  loadScore(): void {
+    const savedScore = localStorage.getItem('playerScore');
+    if (savedScore) {
+      this.score = parseInt(savedScore, 10);
+    }
+  }
+
+  resetScore(): void {
+    this.score = 0;
+    localStorage.removeItem('playerScore');
   }
 
 }
