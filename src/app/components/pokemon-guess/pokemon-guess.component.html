@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+    <span>Guess the Pokemon!</span>
+</mat-toolbar>
+
+<div class="guess-container">
+    
+    <mat-card *ngIf="errorMessage" class="error-card">
+        <mat-card-content>
+            <mat-icon class="error-icon">error_outline</mat-icon>
+            <p class="error-text">{{ errorMessage }}</p>
+            <button mat-raised-button color="warn" (click)="fetchRandomPokemon()">
+                <mat-icon>refresh</mat-icon> Retry
+            </button>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="guess-card" *ngIf="silhouetteImage">
+        <mat-card-title>Who's that Pokemon?</mat-card-title>
+        <mat-card-content>
+            <img [src]="silhouetteImage" alt="Pokemon Silhouette" class="pokemon-image">
+            <div class="options">
+                <button mat-raised-button color="accent" *ngFor="let option of options">
+                    {{ option }}
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div *ngIf="isLoading" class="loading">
+        <mat-spinner diameter="50"></mat-spinner>
+        Loading Pokemon...
+    </div>
+</div>
