@@ -3,6 +3,12 @@
 </mat-toolbar>
 
 <div class="guess-container">
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+        <button mat-button color="warn" (click)="fetchRandomPokemon()">Retry</button>
+    </div>
+
     <mat-card class="guess-card" *ngIf="silhouetteImage">
         <mat-card-title>Who's that Pokemon?</mat-card-title>
         <mat-card-content>
@@ -14,4 +20,9 @@
             </div>
         </mat-card-content>
     </mat-card>
+
+    <div *ngIf="isLoading" class="loading">
+        <mat-spinner diameter="50"></mat-spinner>
+        Loading Pokemon...
+    </div>
 </div>

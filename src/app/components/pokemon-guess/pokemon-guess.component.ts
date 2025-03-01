@@ -10,6 +10,8 @@ export class PokemonGuessComponent {
   pokemonId!: number;
   silhouetteImage!: string;
   options: string[] = [];
+  errorMessage: string | null = null;
+  isLoading = true;
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -18,14 +20,18 @@ export class PokemonGuessComponent {
   }
 
   fetchRandomPokemon(): void {
+    this.isLoading = true;
     this.pokemonService.getRandomPokemon().subscribe({
       next: (data) => {
         this.pokemonId = data.id;
         this.silhouetteImage = data.silhouetteImage;
         this.options = data.options;
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Error fetching Pokemon:', err);
+        this.errorMessage = 'Failed to load Pokemon. Please try again!';
+        this.isLoading = false;
       }
     });
   }
