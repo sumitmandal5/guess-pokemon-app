@@ -16,6 +16,7 @@ export class PokemonGuessComponent implements OnInit {
   fullImage!: string;
   correctName!: string;
   score = 0;
+  buttonsDisabled = false;
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -28,6 +29,7 @@ export class PokemonGuessComponent implements OnInit {
     this.isLoading = true;
     this.errorMessage = null;
     this.guessResult = null;
+    this.buttonsDisabled = false;
 
     this.pokemonService.getRandomPokemon().subscribe({
       next: (data) => {
@@ -46,6 +48,7 @@ export class PokemonGuessComponent implements OnInit {
 
   makeGuess(guessedName: string): void {
     this.isLoading = true;
+    this.buttonsDisabled = true;
     this.pokemonService.guessPokemon(this.pokemonId, guessedName).subscribe({
       next: (response) => {
         this.guessResult = response.guessCorrect ? 'correct' : 'incorrect';
