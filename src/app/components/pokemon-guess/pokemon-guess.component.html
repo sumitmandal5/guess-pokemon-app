@@ -1,5 +1,7 @@
 <mat-toolbar color="primary">
     <span>Guess the Pokemon!</span>
+    <span class="score">Score: {{ score }}</span>
+    <button mat-button color="warn" (click)="resetScore()">Reset Score</button>
 </mat-toolbar>
 
 <div class="guess-container">
