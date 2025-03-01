@@ -6,7 +6,7 @@
     <mat-card class="guess-card" *ngIf="silhouetteImage">
         <mat-card-title>Who's that Pokemon?</mat-card-title>
         <mat-card-content>
-            <img src="assets/placeholder.png" alt="Pokemon Silhouette" class="pokemon-image">
+            <img [src]="silhouetteImage" alt="Pokemon Silhouette" class="pokemon-image">
             <div class="options">
                 <button mat-raised-button color="accent" *ngFor="let option of options">
                     {{ option }}
