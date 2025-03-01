@@ -1,0 +1,24 @@
+.guess-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.guess-card {
+    width: 400px;
+    text-align: center;
+    padding: 20px;
+}
+
+.pokemon-image {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
