@@ -41,3 +41,8 @@ Apart from a lot of scope to improve the app visually, below things can be done.
 4. Add end to end tests.
 5. Improve error-handling by considering more edge cases.
 
+## System Design
+
+![image](https://github.com/user-attachments/assets/b5f99ea8-1eca-4908-bd82-c2c69fab8260)
+
+
