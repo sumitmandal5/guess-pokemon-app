@@ -34,6 +34,7 @@ This will start the angular app on development : http://localhost:4200
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Improvements
+Apart from a lot of scope to improve the app visually, below things can be done.
 1. Add an end condition to the game and add the corresponding component to display the final score.
 2. Add Unit tests.
 3. Add logging.
