@@ -1,11 +1,33 @@
 # GuessPokemonApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.7.
+A simple Angular app where users guess the Pokemon based on its silhouette.
 
-## Development server
+## Features
+Fetches a random Pokemon silhouette.
+Provides multiple-choice options for guessing.
+Tracks user score for correct guesses.
+Stores the score in local storage.
+Displays full Pokemon image after guessing.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Prerequisites
+npm (v10.2.5)
+Angular CLI: 16.1.8
+Node: 18.17.0
 
+to check versions this command can be used : ng version
+
+## How to run
+git clone https://github.com/sumitmandal5/guess-pokemon-app.git
+
+cd guess-pokemon-app
+
+npm install
+
+Start the backend API
+
+Start the angular app using the command : ng serve
+
+This will start the angular app on development : http://localhost:4200
 
 ## Build
 
